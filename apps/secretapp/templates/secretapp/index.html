@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Secrets</title>
+</head>
+<body>
+<h1>Post an Annonoymous Secret</h1>
+<form action="/create" method="post">
+{% csrf_token %}
+	<label>Secret: <textarea name="secret" > </textarea></label>
+	<input type="submit" name="submit" value="post secret">
+
+</form>
+{% for secret in secrets reversed %}
+<p>{{secret.secret}} {{secret.updated_at}} <a href="{% url 'like' secret.id %}">Like</a> {{secret.likes}} likes</p>
+{% endfor %}
+</body>
+</html>
